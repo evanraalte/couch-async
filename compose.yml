@@ -1,0 +1,21 @@
+services:
+  couchdb:
+    image: couchdb:3 # Using the stable late-2025 release
+    container_name: couchdb_dev
+    restart: unless-stopped
+    ports:
+      - "5984:5984" # Standard API & Fauxton UI
+      - "4369:4369" # Erlang Port Mapper (EPMD)
+      - "9100:9100" # Modern monitoring/clustering port
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+      # Forces single-node setup to auto-create system DBs (_users, _replicator, etc.)
+      - ERL_FLAGS=-couch_ini /opt/couchdb/etc/local.d/docker.ini -couchdb single_node true
+    volumes:
+      - couchdb:/opt/couchdb/data
+      - config:/opt/couchdb/etc/local.d/
+
+volumes:
+  couchdb:
+  config:
