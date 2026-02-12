@@ -1,6 +1,6 @@
 [project]
 name = "couch-async"
-version = "0.1.1"
+version = "0.1.2"
 description = "Async HTTP/2 client library for CouchDB 3.x with type-safe interfaces"
 readme = "README.md"
 license = "MIT"

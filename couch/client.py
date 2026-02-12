@@ -64,5 +64,6 @@ async def connect(config: CouchConfig) -> AsyncIterator[CouchClient]:
         ),
         base_url=config.url,
         http2=True,
+        verify=config.verify_ssl,
     ) as http_client:
         yield CouchClient(http_client)

@@ -6,3 +6,4 @@ class CouchConfig(BaseSettings):
     url: str
     username: str
     password: SecretStr
+    verify_ssl: bool = True
